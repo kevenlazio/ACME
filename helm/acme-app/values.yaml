@@ -1,0 +1,8 @@
+image:
+  repository: <DOCKERHUB_USERNAME>/acme-app
+  tag: <TAG>
+
+service:
+  name: acme-app
+  type: LoadBalancer
+  port: 80

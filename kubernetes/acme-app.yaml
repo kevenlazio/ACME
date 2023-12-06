@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: acme-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: acme-app
+  template:
+    metadata:
+      labels:
+        app: acme-app
+    spec:
+      containers:
+      - name: acme-app
+        image: <DOCKERHUB_USERNAME>/acme-app:<TAG>
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: acme-app
+spec:
+  selector:
+    app: acme-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: LoadBalancer
